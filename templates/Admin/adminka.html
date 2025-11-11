@@ -185,6 +185,88 @@
             border-radius: 8px;
             object-fit: cover;
         }
+
+        @media (max-width: 992px) {
+            .stats {
+                flex-direction: column;
+            }
+
+            .stat-card {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                font-size: 20px;
+                padding: 16px 0;
+            }
+
+            .container {
+                padding: 0 12px;
+                margin-top: 20px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            th,
+            td {
+                padding: 10px;
+            }
+
+            .form-box input,
+            .form-box button {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .cards {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .card-info img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                font-size: 18px;
+            }
+
+            .stat-card p {
+                font-size: 22px;
+            }
+
+            table {
+                font-size: 13px;
+            }
+
+            .delete-btn {
+                padding: 6px 10px;
+                font-size: 13px;
+            }
+
+            .form-box {
+                padding: 18px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                padding: 12px 14px;
+            }
+
+            .card-info img {
+                width: 35px;
+                height: 35px;
+            }
+        }
     </style>
 </head>
 
@@ -200,7 +282,6 @@
 
     <div class="container">
 
-        <!-- Статистика -->
         <div class="stats">
             <div class="stat-card">
                 <h3>Foydalanuvchilar</h3>
@@ -212,7 +293,6 @@
             </div>
         </div>
 
-        <!-- Таблица пользователей -->
         <h2>Foydalanuvchilar ro'yxati</h2>
         <table>
             <tr>
@@ -240,7 +320,6 @@
             {% endfor %}
         </table>
 
-        <!-- Форма добавления языка -->
         <div class="form-box">
             <h3>Til qo'shish</h3>
             <form method="post" enctype="multipart/form-data">
@@ -250,7 +329,6 @@
             </form>
         </div>
 
-        <!-- Список языков -->
         <h2>Tillar ro'yxati</h2>
         <div class="cards">
             {% for card in cards %}

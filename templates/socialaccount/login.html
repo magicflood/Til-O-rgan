@@ -45,19 +45,14 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-
             width: 100%;
-            /* растянет на всю ширину родителя */
             padding: 12px 0;
-            /* вертикальный padding, горизонтальный можно оставить 0 */
-
             background: #fff;
             color: #333;
             font-weight: 600;
             font-size: 16px;
 
             border: none;
-            /* убираем стандартный border браузера */
             border-radius: 10px;
 
             text-decoration: none;
@@ -86,6 +81,62 @@
 
         .cancel:hover {
             text-shadow: 0 0 8px #6d8cff;
+        }
+
+        @media (max-width: 768px) {
+            .box {
+                width: 85%;
+                padding: 35px 30px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+
+            .google-btn {
+                font-size: 15px;
+                padding: 11px 0;
+            }
+
+            .google-btn img {
+                width: 20px;
+            }
+
+            .cancel {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .box {
+                width: 90%;
+                padding: 30px 22px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 13px;
+            }
+
+            .google-btn {
+                font-size: 14px;
+                padding: 10px 0;
+            }
+
+            .google-btn img {
+                width: 18px;
+            }
+
+            .cancel {
+                font-size: 13px;
+            }
         }
     </style>
 </head>
