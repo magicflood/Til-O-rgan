@@ -189,30 +189,37 @@
 </head>
 
 <body>
-    <header>🛠 Admin Dashboard</header>
+    <header>🛠 Admin Dashboard
+        <div style="text-align:center; margin:15px 0;">
+            <a href="/"
+                style="text-decoration:none; padding:8px 15px; border-radius:8px; background:#6d8cff; color:white; display:inline-block;">
+                🏠 Bosh sahifa
+            </a>
+        </div>
+    </header>
 
     <div class="container">
 
         <!-- Статистика -->
         <div class="stats">
             <div class="stat-card">
-                <h3>Пользователи</h3>
+                <h3>Foydalanuvchilar</h3>
                 <p>{{ user_count }}</p>
             </div>
             <div class="stat-card">
-                <h3>Языки</h3>
+                <h3>Tilllar</h3>
                 <p>{{ cards|length }}</p>
             </div>
         </div>
 
         <!-- Таблица пользователей -->
-        <h2>Список пользователей</h2>
+        <h2>Foydalanuvchilar ro'yxati</h2>
         <table>
             <tr>
                 <th>ID</th>
                 <th>Email</th>
-                <th>Активный</th>
-                <th>Действие</th>
+                <th>Faol</th>
+                <th>Harakat</th>
             </tr>
             {% for user in users %}
             <tr>
@@ -222,29 +229,29 @@
                 <td>
                     <form method="post" action="{% url 'delete_user' user.id %}">
                         {% csrf_token %}
-                        <button type="submit" class="delete-btn">Удалить</button>
+                        <button type="submit" class="delete-btn">O'chirish</button>
                     </form>
                 </td>
             </tr>
             {% empty %}
             <tr>
-                <td colspan="4" style="text-align:center; color:#888;">Пока нет пользователей</td>
+                <td colspan="4" style="text-align:center; color:#888;">Hozircha foydalanuvchi yo'q</td>
             </tr>
             {% endfor %}
         </table>
 
         <!-- Форма добавления языка -->
         <div class="form-box">
-            <h3>Добавить язык</h3>
+            <h3>Til qo'shish</h3>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit">Добавить</button>
+                <button type="submit">Qo'shish</button>
             </form>
         </div>
 
         <!-- Список языков -->
-        <h2>Список языков</h2>
+        <h2>Tillar ro'yxati</h2>
         <div class="cards">
             {% for card in cards %}
             <div class="card">
@@ -256,11 +263,11 @@
                 </div>
                 <form action="{% url 'delete_card' card.pk %}" method="post">
                     {% csrf_token %}
-                    <button type="submit" class="delete-btn">Удалить</button>
+                    <button type="submit" class="delete-btn">O'chirish</button>
                 </form>
             </div>
             {% empty %}
-            <p style="text-align:center; color:#888;">Пока что нет ни одного языка.</p>
+            <p style="text-align:center; color:#888;">Hozircha hech qanday til qo'shilmagan.</p>
             {% endfor %}
         </div>
 

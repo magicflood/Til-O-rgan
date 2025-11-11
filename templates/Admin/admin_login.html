@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вход в админку</title>
+    <title>Admin panelga kirish</title>
     <style>
         * {
             margin: 0;
@@ -87,9 +87,9 @@
 <body>
     <form method="post" action="{% url 'check_admin_password' %}">
         {% csrf_token %}
-        <h2>Вход в админку</h2>
-        <input type="password" name="password" placeholder="Пароль">
-        <button type="submit">Войти</button>
+        <h2>Admin panelga kirish</h2>
+        <input type="password" name="password" placeholder="Parol">
+        <button type="submit">Kirish</button>
         {% if error %}
         <p class="error">{{ error }}</p>
         {% endif %}
