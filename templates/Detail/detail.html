@@ -1,0 +1,283 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ card.name }} – Til O‘rgan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background-color: #0c0c0f;
+            color: #e4e4e4;
+        }
+
+        nav {
+            background: rgba(14, 14, 18, 0.9);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 80px;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: #6d8cff;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        nav ul li a {
+            color: #e4e4e4;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 17px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #6d8cff;
+            text-shadow: 0 0 10px #6d8cff;
+        }
+
+        .nav-btns a {
+            background: #6d8cff;
+            padding: 9px 20px;
+            border-radius: 10px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .nav-btns a:hover {
+            background: #8c9eff;
+            box-shadow: 0 0 15px #6d8cff;
+        }
+
+        .user-info {
+            color: #e0e0e0;
+            font-weight: 500;
+            margin-right: 15px;
+            background: rgba(109, 140, 255, 0.15);
+            padding: 8px 15px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 15px;
+            backdrop-filter: blur(6px);
+        }
+
+        header {
+            text-align: center;
+            padding: 80px 20px;
+            background: radial-gradient(circle at center, #1a1a1f 0%, #0c0c0f 100%);
+        }
+
+        header img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #6d8cff;
+            box-shadow: 0 0 20px #6d8cff66;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 42px;
+            color: #fff;
+        }
+
+        header p {
+            color: #bcbcbc;
+            font-size: 18px;
+            margin-top: 8px;
+        }
+
+        .container {
+            width: 1100px;
+            margin: 50px auto;
+        }
+
+        .lesson-section {
+            background: #1a1a1f;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .lesson-section h2 {
+            color: #6d8cff;
+            margin-bottom: 25px;
+            font-size: 26px;
+        }
+
+        .lesson-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .lesson-card {
+            background: #25252d;
+            border-radius: 14px;
+            padding: 20px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-5px);
+            background: #2f2f3a;
+            box-shadow: 0 0 15px rgba(109, 140, 255, 0.3);
+        }
+
+        .lesson-card h3 {
+            font-size: 18px;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .lesson-card p {
+            color: #bcbcbc;
+            font-size: 14px;
+        }
+
+        .btn-start {
+            display: inline-block;
+            background: #6d8cff;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 18px;
+            margin-top: 40px;
+            transition: 0.3s;
+        }
+
+        .btn-start:hover {
+            background: #8c9eff;
+            transform: scale(1.05);
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-top: 50px;
+            color: #6d8cff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .btn-back:hover {
+            color: #8c9eff;
+        }
+
+        footer {
+            background: #0e0e12;
+            color: #aaa;
+            text-align: center;
+            padding: 25px 0;
+            font-size: 14px;
+            border-top: 1px solid #1a1a1f;
+            margin-top: 80px;
+        }
+
+        .nav-btns a.admin-btn {
+            background: #4fc3f7;
+            color: #000;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 20px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">Til O‘rgan</div>
+        <ul>
+            <li><a href="{% url 'home' %}">Bosh sahifa</a></li>
+            <li><a href="{% url 'PageLearn' %}">Kurslar</a></li>
+            <li><a href="{% url 'about' %}">Biz haqimizda</a></li>
+        </ul>
+        <div class="nav-btns">
+            <a href="{% url 'admin_login' %}">🛠 Admin</a>
+            {% if user.is_authenticated %}
+            <span class="user-info">👤 {{ user.email }}</span>
+            <a href="{% url 'account_logout' %}">Log out</a>
+            {% else %}
+            <a href="{% url 'account_login' %}">Login</a>
+            <a href="{% url 'account_signup' %}">Sign up</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <header>
+        <img src="{{ card.image.url }}" alt="{{ card.name }}">
+        <h1>{{ card.name }}</h1>
+        <p>Tilni o‘rganish yo‘lida birinchi qadamni qo‘ying!</p>
+    </header>
+
+    <div class="container">
+        <div class="lesson-section">
+            <h2>Darslar ro‘yxati</h2>
+
+            <div class="lesson-list">
+                <div class="lesson-card">
+                    <h3>1-dars: Alifbo bilan tanishuv</h3>
+                    <p>Bu darsda siz tanlagan tildagi alifbo va harflarning talaffuzi bilan tanishasiz.</p>
+                </div>
+
+                <div class="lesson-card">
+                    <h3>2-dars: Salomlashish va oddiy iboralar</h3>
+                    <p>Eng kerakli kundalik iboralarni o‘rganamiz: salomlashish, hol so‘rash va javob berish.</p>
+                </div>
+
+                <div class="lesson-card">
+                    <h3>3-dars: Sonlar va sanalar</h3>
+                    <p>Raqamlar, hafta kunlari va oylarning nomlarini o‘rganamiz.</p>
+                </div>
+            </div>
+
+            <a href="#" class="btn-start">Boshlash →</a>
+            <br>
+            <a href="{% url 'PageLearn' %}" class="btn-back">← Ortga qaytish</a>
+        </div>
+    </div>
+
+
+    <footer>
+        © 2025 Til O‘rgan. Barcha huquqlar himoyalangan.
+    </footer>
+</body>
+
+</html>

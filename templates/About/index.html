@@ -1,0 +1,292 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biz haqimizda – Til O‘rgan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background-color: #0c0c0f;
+            color: #e4e4e4;
+            overflow-x: hidden;
+        }
+
+        nav {
+            background: rgba(14, 14, 18, 0.9);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 80px;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: #6d8cff;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        nav ul li a {
+            color: #e4e4e4;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 17px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #6d8cff;
+            text-shadow: 0 0 10px #6d8cff;
+        }
+
+        .nav-btns a {
+            background: #6d8cff;
+            padding: 9px 20px;
+            border-radius: 10px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .nav-btns a:hover {
+            background: #8c9eff;
+            box-shadow: 0 0 15px #6d8cff;
+        }
+
+        .user-info {
+            color: #e0e0e0;
+            font-weight: 500;
+            margin-right: 15px;
+            background: rgba(109, 140, 255, 0.15);
+            padding: 8px 15px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 15px;
+            backdrop-filter: blur(6px);
+        }
+
+
+        header {
+            text-align: center;
+            padding: 140px 60px;
+            background: radial-gradient(circle at top center, #1a1a22, #0c0c0f 80%);
+            position: relative;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, #6d8cff33 0%, transparent 70%);
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        header h1 {
+            font-size: 46px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header p {
+            color: #bcbcbc;
+            font-size: 18px;
+            max-width: 650px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            width: 1000px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .about-section {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .about-section h2 {
+            color: #6d8cff;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .about-section p {
+            color: #cfcfcf;
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        .values {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .value-box {
+            background: #1a1a1f;
+            padding: 35px 25px;
+            border-radius: 16px;
+            box-shadow: 0 0 25px rgba(109, 140, 255, 0.1);
+            transition: 0.3s;
+        }
+
+        .value-box:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 0 30px rgba(109, 140, 255, 0.2);
+        }
+
+        .value-box h3 {
+            color: #6d8cff;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .value-box p {
+            color: #c7c7c7;
+            font-size: 15px;
+        }
+
+        .mission {
+            text-align: center;
+            background: #101014;
+            padding: 80px 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(109, 140, 255, 0.15);
+            margin-top: 80px;
+        }
+
+        .mission h2 {
+            color: #6d8cff;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .mission p {
+            color: #ccc;
+            font-size: 17px;
+            max-width: 750px;
+            margin: 0 auto;
+            line-height: 1.9;
+        }
+
+        footer {
+            background: #0e0e12;
+            color: #aaa;
+            text-align: center;
+            padding: 25px 0;
+            font-size: 14px;
+            border-top: 1px solid #1a1a1f;
+            margin-top: 80px;
+        }
+
+        .nav-btns a.admin-btn {
+            background: #4fc3f7;
+            color: #000;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 20px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">Til O‘rgan</div>
+        <ul>
+            <li><a href="{% url 'home' %}">Bosh sahifa</a></li>
+            <li><a href="{% url 'PageLearn' %}">Kurslar</a></li>
+            <li><a href="{% url 'about' %}">Biz haqimizda</a></li>
+        </ul>
+        <div class="nav-btns">
+            <a href="{% url 'admin_login' %}">🛠 Admin</a>
+            {% if user.is_authenticated %}
+            <span class="user-info">👤 {{ user.email }}</span>
+            <a href="{% url 'account_logout' %}">Log out</a>
+            {% else %}
+            <a href="{% url 'account_login' %}">Login</a>
+            <a href="{% url 'account_signup' %}">Sign up</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <header>
+        <h1>Biz haqimizda</h1>
+        <p>Til O‘rgan — bu sizning tillarni o‘rganishdagi eng ishonchli hamkoringiz. Biz zamonaviy, interaktiv va qulay
+            o‘quv jarayonini taqdim etamiz.</p>
+    </header>
+    <div class="container">
+        <section class="about-section">
+            <h2>Bizning maqsadimiz</h2>
+            <p>Bizning asosiy maqsadimiz — har bir o‘quvchiga istalgan tilda erkin muloqot qilish imkonini berish. Til
+                O‘rgan platformasi o‘quvchilarga til o‘rganishni qiziqarli, samarali va zamonaviy shaklda olib borish
+                uchun ishlab chiqilgan.</p>
+        </section>
+        <div class="values">
+            <div class="value-box">
+                <h3>💡 Innovatsiya</h3>
+                <p>Biz yangi texnologiyalar yordamida o‘qishni yanada qulay qilamiz. Sun’iy intellekt asosidagi mashqlar
+                    — bizning ustunligimiz.</p>
+            </div>
+            <div class="value-box">
+                <h3>🤝 Hamkorlik</h3>
+                <p>Bizning jamoa o‘qituvchilar, dasturchilar va dizaynerlardan iborat — har biri o‘z sohasining
+                    mutaxassisi.</p>
+            </div>
+            <div class="value-box">
+                <h3>🚀 O‘sish</h3>
+                <p>Biz foydalanuvchilar bilan birga o‘sishni istaymiz. Har bir yangi dars, yangi imkoniyat — bu sizning
+                    yutug‘ingiz.</p>
+            </div>
+        </div>
+        <div class="mission">
+            <h2>Bizning vazifamiz</h2>
+            <p>Til O‘rgan — bu faqat platforma emas, bu har bir inson uchun yangi imkoniyatlar eshigi. Biz bilim orqali
+                o‘zgarish keltiramiz, chet tillar orqali dunyoni kengaytiramiz.</p>
+        </div>
+    </div>
+    <footer> © 2025 Til O‘rgan. Barcha huquqlar himoyalangan. </footer>
+</body>
+
+</html>

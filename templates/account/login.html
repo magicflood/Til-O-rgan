@@ -1,0 +1,253 @@
+{% load socialaccount %}
+{% load account %}
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kirish – Til O‘rgan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background-color: #0c0c0f;
+            color: #e4e4e4;
+        }
+
+        nav {
+            background: rgba(14, 14, 18, 0.9);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 80px;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: #6d8cff;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        nav ul li a {
+            color: #e4e4e4;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 17px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #6d8cff;
+            text-shadow: 0 0 10px #6d8cff;
+        }
+
+        .nav-btns {
+            display: flex;
+            gap: 12px;
+        }
+
+        .nav-btns a {
+            background: #6d8cff;
+            padding: 9px 20px;
+            border-radius: 10px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .nav-btns a:hover {
+            background: #8c9eff;
+            box-shadow: 0 0 15px #6d8cff;
+        }
+
+        .form-container {
+            max-width: 450px;
+            margin: 120px auto;
+            background: #121218;
+            padding: 40px 30px;
+            border-radius: 16px;
+            border: 1px solid #1e1e26;
+            box-shadow: 0 0 20px rgba(109, 140, 255, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #6d8cff;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 1px solid #2a2a32;
+            background: #0e0e12;
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #6d8cff;
+            box-shadow: 0 0 10px #6d8cff33;
+        }
+
+        button {
+            background: linear-gradient(90deg, #6d8cff, #8c9eff);
+            border: none;
+            padding: 13px;
+            color: white;
+            border-radius: 10px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px #6d8cff;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 20px 0;
+            color: #999;
+            position: relative;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            position: absolute;
+            width: 40%;
+            height: 1px;
+            background: #2a2a32;
+            top: 50%;
+        }
+
+        .divider::before {
+            left: 0;
+        }
+
+        .divider::after {
+            right: 0;
+        }
+
+        .google-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #fff;
+            color: #333;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .google-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px #6d8cff55;
+        }
+
+        .google-btn img {
+            width: 20px;
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 15px;
+            color: #bfbfbf;
+        }
+
+        .signup-link a {
+            color: #6d8cff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .signup-link a:hover {
+            text-shadow: 0 0 8px #6d8cff;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">Til O‘rgan</div>
+        <ul>
+            <li><a href="{% url 'home' %}">Bosh sahifa</a></li>
+            <li><a href="{% url 'PageLearn' %}">Kurslar</a></li>
+            <li><a href="{% url 'about' %}">Biz haqimizda</a></li>
+        </ul>
+        <div class="nav-btns">
+            <a href="{% url 'admin:index' %}">🛠 Admin</a>
+            <a href="{% url 'account_signup' %}">Ro‘yxatdan o‘tish</a>
+        </div>
+    </nav>
+
+    <div class="form-container">
+        <h1>Kirish</h1>
+        <form method="POST" action="{% url 'account_login' %}">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+
+            <div>
+                {{ form.login.errors }}
+                <input type="{{ form.login.field.widget.input_type }}" name="{{ form.login.html_name }}"
+                    placeholder="{{ form.login.label }}" required>
+            </div>
+
+            <div>
+                {{ form.password.errors }}
+                <input type="{{ form.password.field.widget.input_type }}" name="{{ form.password.html_name }}"
+                    placeholder="{{ form.password.label }}" required>
+            </div>
+            <button type="submit">Kirish</button>
+        </form>
+
+
+        <div class="divider">yoki</div>
+
+        <a class="google-btn" href="{% provider_login_url 'google' %}">
+            <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google">
+            Google bilan kirish
+        </a>
+
+        <div class="signup-link">
+            Yangi foydalanuvchimisiz? <a href="{% url 'account_signup' %}">Ro‘yxatdan o‘tish</a>
+        </div>
+    </div>
+</body>
+
+</html>

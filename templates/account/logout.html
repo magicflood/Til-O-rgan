@@ -1,0 +1,142 @@
+{% load socialaccount %}
+{% load account %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chiqish – Til O‘rgan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background-color: #0b0b0f;
+            color: #e6e6e6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* === Navbar === */
+        nav {
+            background-color: rgba(14, 14, 18, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 40px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 10;
+        }
+
+        nav .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #6d8cff;
+        }
+
+        nav a {
+            color: #bfbfbf;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #6d8cff;
+        }
+
+        /* === Main Box === */
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 20px 40px;
+        }
+
+        .logout-box {
+            background: #121218;
+            border-radius: 16px;
+            border: 1px solid #1d1d26;
+            box-shadow: 0 0 25px rgba(109, 140, 255, 0.15);
+            padding: 40px 35px;
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            font-size: 26px;
+            color: #6d8cff;
+            margin-bottom: 18px;
+        }
+
+        p {
+            color: #bfbfbf;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        form button {
+            background: linear-gradient(90deg, #6d8cff, #8a9bff);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        form button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px rgba(109, 140, 255, 0.6);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #6d8cff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            text-shadow: 0 0 8px #6d8cff;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">Til O‘rgan</div>
+        <a href="{% url 'home' %}">Bosh sahifa</a>
+    </nav>
+
+    <main>
+        <div class="logout-box">
+            <h1>Chiqish</h1>
+            <p>Siz hisobingizdan chiqmoqchimisiz?</p>
+            <form method="POST" action="{% url 'account_logout' %}">
+                {% csrf_token %}
+                <button type="submit">Ha, chiqish</button>
+            </form>
+            <a href="{% url 'home' %}" class="back-link">Bosh sahifaga qaytish</a>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,274 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kurslar – Til O‘rgan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background-color: #0c0c0f;
+            color: #e4e4e4;
+            overflow-x: hidden;
+        }
+
+        nav {
+            background: rgba(14, 14, 18, 0.9);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 80px;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: #6d8cff;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        nav ul li a {
+            color: #e4e4e4;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 17px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #6d8cff;
+            text-shadow: 0 0 10px #6d8cff;
+        }
+
+        .nav-btns a {
+            background: #6d8cff;
+            padding: 9px 20px;
+            border-radius: 10px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .nav-btns a:hover {
+            background: #8c9eff;
+            box-shadow: 0 0 15px #6d8cff;
+        }
+
+        .user-info {
+            color: #e0e0e0;
+            font-weight: 500;
+            margin-right: 15px;
+            background: rgba(109, 140, 255, 0.15);
+            padding: 8px 15px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 15px;
+            backdrop-filter: blur(6px);
+        }
+
+
+        header {
+            text-align: center;
+            padding: 100px 40px 60px;
+            background: linear-gradient(180deg, #121218, #0c0c0f);
+            position: relative;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #6d8cff33 0%, transparent 70%);
+            top: -150px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        header h1 {
+            font-size: 42px;
+            font-weight: 700;
+            color: #fff;
+            position: relative;
+            z-index: 1;
+        }
+
+        header p {
+            margin-top: 15px;
+            color: #cfcfcf;
+            position: relative;
+            z-index: 1;
+            font-size: 18px;
+        }
+
+        section {
+            padding: 80px 60px;
+            max-width: 1300px;
+            margin: auto;
+        }
+
+        .wrap_box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 40px;
+            justify-items: center;
+        }
+
+        .box {
+            background: #15151b;
+            border: 1px solid #1f1f25;
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            width: 220px;
+            transition: all 0.35s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .box::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(109, 140, 255, 0.1), transparent 70%);
+            opacity: 0;
+            transition: 0.4s;
+        }
+
+        .box:hover::before {
+            opacity: 1;
+        }
+
+        .box:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 0 25px rgba(109, 140, 255, 0.2);
+        }
+
+        .country_img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #6d8cff;
+            transition: 0.3s;
+        }
+
+        .box:hover .country_img {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #6d8cff80;
+        }
+
+        .country_name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+
+        .box:hover .country_name {
+            color: #6d8cff;
+            text-shadow: 0 0 10px #6d8cff80;
+        }
+
+        footer {
+            background: #0e0e12;
+            color: #999;
+            text-align: center;
+            padding: 25px 0;
+            font-size: 15px;
+            border-top: 1px solid #1a1a1f;
+        }
+
+        footer span {
+            color: #6d8cff;
+        }
+
+        .nav-btns a.admin-btn {
+            background: #4fc3f7;
+            color: #000;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 20px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">Til O‘rgan</div>
+        <ul>
+            <li><a href="{% url 'home' %}">Bosh sahifa</a></li>
+            <li><a href="{% url 'PageLearn' %}">Kurslar</a></li>
+            <li><a href="{% url 'about' %}">Biz haqimizda</a></li>
+        </ul>
+        <div class="nav-btns">
+            <a href="{% url 'admin_login' %}">🛠 Admin</a>
+            {% if user.is_authenticated %}
+            <span class="user-info">👤 {{ user.email }}</span>
+            <a href="{% url 'account_logout' %}">Log out</a>
+            {% else %}
+            <a href="{% url 'account_login' %}">Login</a>
+            <a href="{% url 'account_signup' %}">Sign up</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <header>
+        <h1>Til o‘rganishni boshlang</h1>
+        <p>Quyidagi tillardan birini tanlang va o‘z sayohatingizni boshlang.</p>
+    </header>
+
+    <section>
+        <div class="wrap_box">
+            {% for i in lessons %}
+            <a href="{% url 'detail' i.pk %}" style="text-decoration: none;">
+                <div class="box">
+                    <img class="country_img" src="{{ i.image.url }}" alt="{{ i.name }}">
+                    <p class="country_name">{{ i.name }}</p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </section>
+
+    <footer>
+        © 2025 <span>Til O‘rgan</span>. Barcha huquqlar himoyalangan.
+    </footer>
+</body>
+
+</html>

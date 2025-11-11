@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в админку</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at top center, #1a1a22, #0c0c0f 90%);
+            color: #e4e4e4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        form {
+            background: rgba(18, 18, 24, 0.95);
+            padding: 40px 30px;
+            border-radius: 16px;
+            text-align: center;
+            width: 320px;
+            box-shadow: 0 0 20px rgba(109, 140, 255, 0.3);
+            backdrop-filter: blur(8px);
+        }
+
+        form h2 {
+            margin-bottom: 25px;
+            font-size: 24px;
+            color: #6d8cff;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            border: 1px solid #4b4b55;
+            border-radius: 8px;
+            background: #0c0c0f;
+            color: #e4e4e4;
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #6d8cff;
+            box-shadow: 0 0 10px #6d8cff55;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #6d8cff, #8c9eff);
+            color: #fff;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px #6d8cff;
+        }
+
+        p.error {
+            color: #ff6b6b;
+            margin-top: 12px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <form method="post" action="{% url 'check_admin_password' %}">
+        {% csrf_token %}
+        <h2>Вход в админку</h2>
+        <input type="password" name="password" placeholder="Пароль">
+        <button type="submit">Войти</button>
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+    </form>
+</body>
+
+</html>

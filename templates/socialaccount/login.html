@@ -1,0 +1,111 @@
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google orqali kirish – Til O‘rgan</title>
+    <style>
+        body {
+            background: #0c0c0f;
+            color: #e4e4e4;
+            font-family: "Segoe UI", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .box {
+            background: #121218;
+            padding: 40px 50px;
+            border-radius: 16px;
+            border: 1px solid #1e1e26;
+            box-shadow: 0 0 20px rgba(109, 140, 255, 0.1);
+            text-align: center;
+            width: 400px;
+        }
+
+        h1 {
+            color: #6d8cff;
+            font-size: 24px;
+            margin-bottom: 25px;
+        }
+
+        p {
+            color: #ccc;
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+
+        .google-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            width: 100%;
+            /* растянет на всю ширину родителя */
+            padding: 12px 0;
+            /* вертикальный padding, горизонтальный можно оставить 0 */
+
+            background: #fff;
+            color: #333;
+            font-weight: 600;
+            font-size: 16px;
+
+            border: none;
+            /* убираем стандартный border браузера */
+            border-radius: 10px;
+
+            text-decoration: none;
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .google-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px #6d8cff55;
+        }
+
+
+        .google-btn img {
+            width: 22px;
+        }
+
+        .cancel {
+            margin-top: 20px;
+            display: block;
+            color: #6d8cff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .cancel:hover {
+            text-shadow: 0 0 8px #6d8cff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h1>Google orqali kirish</h1>
+        <p>Siz hozir Google hisobingiz orqali tizimga kiryapsiz.</p>
+
+        <form method="post" action="{% provider_login_url 'google' %}">
+            {% csrf_token %}
+            <button type="submit" class="google-btn">
+                <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google">
+                Google bilan davom etish
+            </button>
+        </form>
+
+
+        <a href="{% url 'account_login' %}" class="cancel">Bekor qilish</a>
+    </div>
+</body>
+
+</html>
